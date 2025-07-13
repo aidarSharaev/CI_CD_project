@@ -1,4 +1,4 @@
-package com.example.cidishka_project
+package com.example.cidishkaproject
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -9,21 +9,20 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.cidishka_project.ui.theme.CiDishka_projectTheme
-import com.example.cidishka_app_lib.Dope
+import androidx.compose.ui.platform.testTag
+import com.example.cidishkaproject.ui.theme.ciDishkaProjectTheme
+import com.example.cidishkaapplib.Dope
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            CiDishka_projectTheme {
-                Dope().print()
+            ciDishkaProjectTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
+                    greeting(
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
@@ -33,17 +32,18 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
+internal fun greeting(modifier: Modifier = Modifier) {
+    val nope = remember { Nope() }
     Text(
-        text = "Hello $name!",
-        modifier = modifier
+        text = nope.greeting(),
+        modifier = modifier.testTag("testTag")
     )
 }
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    CiDishka_projectTheme {
-        Greeting("Android")
+internal class Nope {
+    private val dope = Dope()
+
+    fun greeting(): String {
+        return dope.helloWorld() + " Android"
     }
 }

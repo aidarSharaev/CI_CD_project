@@ -1,4 +1,4 @@
-package com.example.cidishka_project.ui.theme
+package com.example.cidishkaproject.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
