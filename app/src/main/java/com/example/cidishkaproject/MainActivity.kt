@@ -41,6 +41,7 @@ internal fun greeting(modifier: Modifier = Modifier) {
 }
 
 internal class Nope {
+
     private val dope = Dope()
 
     fun greeting(): String {
