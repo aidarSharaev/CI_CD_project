@@ -28,7 +28,7 @@ jobs:
 
       - uses: actions/checkout@v4
         with:
-          repository: https://github.com/aidarSharaev/CI_CD_app_lib_depends
+          repository: aidarSharaev/CI_CD_app_lib_depends
           path: 'library'
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
