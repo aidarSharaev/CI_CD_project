@@ -26,6 +26,8 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
 
+      -run: chmod +x gradlew
+
       - name: Checkout to library
         uses: actions/checkout@v4
         with:
@@ -47,8 +49,7 @@ jobs:
       - name: Run library unit-tests
         working-directory: ./library
         run: |
-          ./gradlew assemble
-          ./gradlew lib:testDebugUnitTest --build-cache
+          ./gradlew assemble lib:testDebugUnitTest --build-cache publishToMavenLocal
 
       # Runs project unit tests
       - name: Run app unit-tests
