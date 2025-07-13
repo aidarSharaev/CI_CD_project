@@ -52,7 +52,7 @@ jobs:
       - name: Run library unit-tests
         working-directory: ./CiDishka_app_lib
         run: |
-          ./gradlew assemble lib:testDebugUnitTest --build-cache publishToMavenLocal
+          ./gradlew assemble lib:testDebugUnitTest --build-cache
 
       # Runs project unit tests
       - name: Run app unit-tests
