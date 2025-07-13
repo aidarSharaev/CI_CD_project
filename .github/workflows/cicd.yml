@@ -31,6 +31,7 @@ jobs:
         with:
           repository: aidarSharaev/CI_CD_app_lib_depends
           path: 'library'
+          run: ./gradlew assemble
           
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout to app 
