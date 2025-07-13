@@ -30,13 +30,13 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: aidarSharaev/CI_CD_app_lib_depends
-          # path: 'library' 
+          path: 'CiDishka_app_lib' 
           
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout to app 
         uses: actions/checkout@v4
-        # with:
-        #   path: 'app'
+        with:
+          path: 'apCiDishka_project'
 
       - name: Setup java
         uses: actions/setup-java@v4
@@ -44,17 +44,17 @@ jobs:
           distribution: 'jetbrains'
           java-version: '17'
 
-      - name: Chmod
-        run: |
-          ls -al
-          chmod +x ./gradlew
+      # - name: Chmod
+      #   run: |
+      #     ls -al
+      #     chmod +x ./gradlew
 
       - name: Run library unit-tests
-        # working-directory: ./library
+        working-directory: ./CiDishka_app_lib
         run: |
           ./gradlew assemble lib:testDebugUnitTest --build-cache publishToMavenLocal
 
       # Runs project unit tests
       - name: Run app unit-tests
-        # working-directory: ./app
+        working-directory: ./apCiDishka_project
         run: ./gradlew app:testDebugUnitTest --build-cache
