@@ -26,11 +26,6 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
 
-      - name: Chmod
-        run: |
-          ls -al
-          chmod +x ./gradlew
-
       - name: Checkout to library
         uses: actions/checkout@v4
         with:
@@ -48,6 +43,11 @@ jobs:
         with:
           distribution: 'jetbrains'
           java-version: '17'
+
+      - name: Chmod
+        run: |
+          ls -al
+          chmod +x ./gradlew
 
       - name: Run library unit-tests
         working-directory: ./library
