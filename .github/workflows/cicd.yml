@@ -63,6 +63,6 @@ jobs:
       - name: Upload detektHTML report
         uses: actions/upload-artifact@v4
         with:
-          working-directory: ./CiDishka_app_lib
+          working-directory: ./apCiDishka_project
           name: kover-report
           path: build/reports/kover/html/
