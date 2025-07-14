@@ -48,14 +48,6 @@ jobs:
         with:
           gradle-version: '8.10.2'
 
-      - name: Run detekt
-        run: |
-          ./gradlew detekt
-
-      - name: Run kover
-        run: |
-          ./gradlew koverHtmlReportDebug
-
       - name: Run library unit-tests
         working-directory: ./CiDishka_app_lib
         run: |
@@ -65,6 +57,16 @@ jobs:
         working-directory: ./apCiDishka_project
         run: |
           ./gradlew testDebugUnitTest --stacktrace --build-cache 
+
+      - name: Run detekt
+        working-directory: ./apCiDishka_project
+        run: |
+          ./gradlew detekt
+
+      - name: Run kover
+        working-directory: ./apCiDishka_project
+        run: |
+          ./gradlew koverHtmlReportDebug
 
       - name: Upload koverHTML report
         uses: actions/upload-artifact@v4
