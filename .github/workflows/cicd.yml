@@ -8,8 +8,6 @@ on:
   push:
     branches: 
       - master 
-      - dev 
-      - first_commit
   pull_request:
     branches: [ "master" ]
 
@@ -26,43 +24,17 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
 
-      - name: Checkout to library
+      - run: echo "job'a ${{job.status}}"
+      - run: echo "event name ${{github.event.name}}"
+      - run: echo "os ${{runner.os}}"
+      - run: echo "branch ${{github.event.name}}"
+      - run: echo "ref ${{github.ref}}"
+      - run: echo "repo ${{github.repository}}"
+
+      - name: Check out repository code
         uses: actions/checkout@v4
-        with:
-          repository: aidarSharaev/CI_CD_app_lib_depends
-          path: 'CiDishka_app_lib' 
-          
-      - name: Checkout to app 
-        uses: actions/checkout@v4
-        with:
-          path: 'apCiDishka_project'
-
-      - name: Setup java
-        uses: actions/setup-java@v4
-        with:
-          distribution: 'jetbrains'
-          java-version: '17'
-
-      - name: Run library unit-tests
-        working-directory: ./CiDishka_app_lib
-        run: |
-          ./gradlew assemble --stacktrace lib:testDebugUnitTest --build-cache koverHtmlReportDebug detekt
-
-      - name: Run app unit-tests
-        working-directory: ./apCiDishka_project
-        run: |
-          ./gradlew testDebugUnitTest --stacktrace --build-cache koverHtmlReportDebug detekt
-
-      - name: Upload koverHTML report
-        uses: actions/upload-artifact@v4
-        with:
-          working-directory: ./CiDishka_app_lib
-          name: kover-report
-          path: build/reports/kover/html/
-
-      - name: Upload detektHTML report
-        uses: actions/upload-artifact@v4
-        with:
-          working-directory: ./apCiDishka_project
-          name: kover-report
-          path: build/reports/kover/html/
+      
+      - run: echo "repo ${{github.repository}}"
+      - run: echo "workspace ${{github.workspace}}"
+      - run: echo "job'a ${{job.status}}"
+      
