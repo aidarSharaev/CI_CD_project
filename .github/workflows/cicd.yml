@@ -51,7 +51,7 @@ jobs:
       - name: Run app unit-tests
         working-directory: ./apCiDishka_project
         run: |
-          ./gradlew app:testDebugUnitTest --stacktrace --build-cache koverHtmlReportDebug detekt
+          ./gradlew testDebugUnitTest --stacktrace --build-cache koverHtmlReportDebug detekt
 
       - name: Upload koverHTML report
         uses: actions/upload-artifact@v4
