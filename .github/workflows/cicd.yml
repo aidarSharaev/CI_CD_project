@@ -25,7 +25,7 @@ jobs:
     steps:
 
       - run: echo "job'a ${{job.status}}"
-      - run: echo "event name ${{github.event.name}}"
+      - run: echo "event name ${{github.event_name}}"
       - run: echo "os ${{runner.os}}"
       - run: echo "branch ${{github.event.name}}"
       - run: echo "ref ${{github.ref}}"
