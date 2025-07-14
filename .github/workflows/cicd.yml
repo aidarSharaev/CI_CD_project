@@ -32,7 +32,6 @@ jobs:
           repository: aidarSharaev/CI_CD_app_lib_depends
           path: 'CiDishka_app_lib' 
           
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout to app 
         uses: actions/checkout@v4
         with:
@@ -44,17 +43,26 @@ jobs:
           distribution: 'jetbrains'
           java-version: '17'
 
-      # - name: Chmod
-      #   run: |
-      #     ls -al
-      #     chmod +x ./gradlew
-
       - name: Run library unit-tests
         working-directory: ./CiDishka_app_lib
         run: |
-          ./gradlew assemble lib:testDebugUnitTest --build-cache
+          ./gradlew assemble --stacktrace lib:testDebugUnitTest --build-cache koverHtmlReportDebug detekt
 
-      # Runs project unit tests
       - name: Run app unit-tests
         working-directory: ./apCiDishka_project
-        run: ./gradlew app:testDebugUnitTest --build-cache
+        run: |
+          ./gradlew app:testDebugUnitTest --stacktrace --build-cache koverHtmlReportDebug detekt
+
+      - name: Upload koverHTML report
+        uses: actions/upload-artifact@v3
+        with:
+          working-directory: ./CiDishka_app_lib
+          name: kover-report
+          path: build/reports/kover/html/
+
+      - name: Upload detektHTML report
+        uses: actions/upload-artifact@v3
+        with:
+          working-directory: ./CiDishka_app_lib
+          name: kover-report
+          path: build/reports/kover/html/
