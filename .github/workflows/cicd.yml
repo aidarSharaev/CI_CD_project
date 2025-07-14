@@ -54,14 +54,14 @@ jobs:
           ./gradlew app:testDebugUnitTest --stacktrace --build-cache koverHtmlReportDebug detekt
 
       - name: Upload koverHTML report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           working-directory: ./CiDishka_app_lib
           name: kover-report
           path: build/reports/kover/html/
 
       - name: Upload detektHTML report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           working-directory: ./CiDishka_app_lib
           name: kover-report
